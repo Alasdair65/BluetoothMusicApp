@@ -1,0 +1,3 @@
+-dontwarn okio.**
+-dontwarn kotlin.**
+-keep class com.bluetooth.music.** { *; }

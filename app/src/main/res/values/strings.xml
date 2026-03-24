@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">蓝牙音乐自动化</string>
+    <string name="notification_channel_name">蓝牙音乐监控</string>
+    <string name="notification_channel_description">监控蓝牙连接状态并自动播放音乐</string>
+    <string name="select_bluetooth_device">选择蓝牙设备</string>
+    <string name="select_music_app">选择音乐应用</string>
+    <string name="bgm_song">BGM 歌曲（可选）</string>
+    <string name="playback_mode">播放模式</string>
+    <string name="playlist_name">歌单名称</string>
+    <string name="save_config">保存配置并启动监控</string>
+    <string name="monitoring_status">📡 应用已在后台运行，连接到指定蓝牙设备时自动播放音乐</string>
+    
+    <!-- 无障碍服务 -->
+    <string name="accessibility_service_description">
+        蓝牙音乐自动化需要无障碍权限来控制 Apple Music 应用界面。
+        此权限用于：
+        • 搜索并播放指定的 BGM 歌曲
+        • 在 BGM 播放完成后自动切换到播放列表
+        • 设置播放模式（随机/顺序/单曲循环）
+        
+        此服务仅在 Apple Music 应用运行时激活，不会收集任何个人信息。
+    </string>
+    <string name="accessibility_service_title">蓝牙音乐控制</string>
+    
+    <!-- 权限请求 -->
+    <string name="permission_bluetooth_required">需要蓝牙权限才能检测蓝牙连接</string>
+    <string name="permission_accessibility_required">需要无障碍权限才能控制 Apple Music 播放</string>
+    <string name="permission_notification_required">需要通知权限才能显示后台服务状态</string>
+    
+    <!-- 提示消息 -->
+    <string name="config_saved">配置已保存！应用将在后台监控蓝牙连接</string>
+    <string name="bgm_will_play">连接蓝牙后将先播放： %1$s</string>
+    <string name="playlist_will_play">然后播放歌单：%1$s</string>
+    <string name="direct_playlist_play">直接播放歌单：%1$s</string>
+</resources>

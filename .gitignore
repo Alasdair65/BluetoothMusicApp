@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# 签名文件（不要提交到版本控制）
+*.keystore
+*.jks
+bluetooth-music.keystore
