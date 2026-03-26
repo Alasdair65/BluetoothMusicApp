@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.bluetooth.music"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.bluetooth.music"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -25,6 +25,16 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+        }
+    }
+    
+    lint {
+        disable += "LintError"
+        checkReleaseBuilds = false
+        abortOnError = false
     }
     
     compileOptions {

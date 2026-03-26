@@ -1,0 +1,71 @@
+name: Build APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build Debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+
+      - name: Build Release APK
+        run: |
+          ./gradlew assembleRelease --no-daemon
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: app/build/outputs/apk/release/app-release.apk
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/release/app-release.apk
+          body: |
+            ## 🎉 新版本发布！
+
+            ### ✨ 功能特性
+            - 🔗 蓝牙连接自动检测
+            - 🎼 Apple Music 完整支持
+            - 🎹 BGM 歌曲先播放，完成后自动切换播放列表
+            - 🔄 支持随机/顺序/单曲循环播放模式
+            - 📡 后台持续监控服务
+            - ♿ 无障碍服务精确控制
+
+            ### 📱 系统要求
+            - Android 8.0 (API 26) 及以上
+
+            ### 📥 下载
+            - **Debug 版本**: app-debug.apk (可用于测试)
+            - **Release 版本**: app-release.apk (正式版本)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
