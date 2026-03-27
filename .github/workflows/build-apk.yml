@@ -25,11 +25,12 @@ jobs:
       - name: Build Debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ls -la gradlew gradle/wrapper/
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Build Release APK
         run: |
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease --no-daemon --stacktrace
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
