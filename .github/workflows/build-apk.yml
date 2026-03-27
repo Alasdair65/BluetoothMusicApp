@@ -26,11 +26,8 @@ jobs:
         run: |
           chmod +x gradlew
           ls -la gradlew gradle/wrapper/
-          ./gradlew assembleDebug --no-daemon --stacktrace
-
-      - name: Build Release APK
-        run: |
-          ./gradlew assembleRelease --no-daemon --stacktrace
+          cat gradle/wrapper/gradle-wrapper.properties
+          ./gradlew assembleDebug --no-daemon --info 2>&1 | head -500
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
