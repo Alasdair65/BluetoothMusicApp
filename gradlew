@@ -1,22 +1,20 @@
 #!/bin/sh
 
-# Gradle Wrapper 脚本（简化版）
-# 用于在服务器上构建 APK
+##############################################################################
+#
+#   Gradle start up script for POSIX
+#
+##############################################################################
 
-echo "⚠️ Gradle Wrapper 不可用"
-echo ""
-echo "请在本地电脑上构建 APK："
-echo ""
-echo "1. 克隆仓库："
-echo "   git clone https://github.com/Alasdair65/BluetoothMusicApp.git"
-echo "   cd BluetoothMusicApp"
-echo ""
-echo "2. 用 Android Studio 打开"
-echo ""
-echo "3. Build → Build APK(s)"
-echo ""
-echo "4. APK 位置："
-echo "   app/build/outputs/apk/debug/app-debug.apk"
-echo ""
-echo "5. 上传到 Release："
-echo "   https://github.com/Alasdair65/BluetoothMusicApp/releases/new"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+CLASSPATH="$SCRIPT_DIR/gradle/wrapper/gradle-wrapper.jar"
+
+# 使用阿里云镜像
+export GRADLE_OPTS="-Dorg.gradle.repository.http.timeout=60000 -Dorg.gradle.internal.http.connectionTimeout=60000 -Dorg.gradle.internal.http.socketTimeout=60000"
+
+exec "/snap/android-studio/current/jbr/bin/java" \
+  -Xmx2048m \
+  -Dfile.encoding=UTF-8 \
+  -classpath "$CLASSPATH" \
+  org.gradle.wrapper.GradleWrapperMain \
+  "$@"
